@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -12,48 +12,27 @@
 	<artifactId>TaskManager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>TaskManager</name>
-	<description>Demo project for Spring Boot</description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
+	<description>Task Management Application with Spring Boot</description>
+
 	<properties>
 		<java.version>21</java.version>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
 	</properties>
+
 	<dependencies>
+		<!-- ==================== WEB ==================== -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<!-- ==================== DATABASE / PERSISTENCE ==================== -->
 		<!-- Spring Boot Data JPA - Pour la persistance des données -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-
-		<!-- Spring Boot Security - Pour l'authentification et autorisation -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-
-		<!-- Spring Boot Validation - Pour la validation des données -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-validation</artifactId>
-		</dependency>
-
-		<!-- ==================== BASES DE DONNÉES ==================== -->
 
 		<!-- H2 Database - Base de données en mémoire pour développement -->
 		<dependency>
@@ -62,36 +41,34 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- PostgreSQL - Base de données pour production (optionnel) -->
+
+
+		<!-- ==================== SECURITY ==================== -->
+		<!-- Spring Boot Security - Pour l'authentification et autorisation -->
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
-		<!-- ==================== LOMBOK ==================== -->
-
-		<!-- Lombok - Réduit le code boilerplate (getters, setters, etc.) -->
+		<!-- OAuth2 Resource Server -->
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
 		</dependency>
 
 		<!-- ==================== JWT - JSON Web Token ==================== -->
-
 		<!-- JWT API -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
-			<version>0.11.5</version>
+			<version>0.12.3</version>
 		</dependency>
 
 		<!-- JWT Implementation -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-impl</artifactId>
-			<version>0.11.5</version>
+			<version>0.12.3</version>
 			<scope>runtime</scope>
 		</dependency>
 
@@ -99,12 +76,42 @@
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-jackson</artifactId>
-			<version>0.11.5</version>
+			<version>0.12.3</version>
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- ==================== DEVTOOLS ==================== -->
+		<!-- ==================== CRYPTOGRAPHY ==================== -->
+		<!-- BouncyCastle pour Argon2 -->
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk18on</artifactId>
+			<version>1.78.1</version>
+		</dependency>
 
+		<!-- ==================== VALIDATION ==================== -->
+		<!-- Spring Boot Validation - Pour la validation des données -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+		<!-- ==================== UTILITIES ==================== -->
+		<!-- Lombok - Réduit le code boilerplate (getters, setters, etc.) -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- ==================== DOCUMENTATION ==================== -->
+		<!-- Springdoc OpenAPI (Swagger) -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.0.2</version>
+		</dependency>
+
+		<!-- ==================== DEVELOPMENT TOOLS ==================== -->
 		<!-- Spring Boot DevTools - Pour le rechargement automatique en développement -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -113,8 +120,7 @@
 			<optional>true</optional>
 		</dependency>
 
-		<!-- ==================== TESTS ==================== -->
-
+		<!-- ==================== TESTING ==================== -->
 		<!-- Spring Boot Starter Test - Pour les tests unitaires et d'intégration -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -128,25 +134,6 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- ==================== DOCUMENTATION API (Optionnel) ==================== -->
-
-		<!-- SpringDoc OpenAPI - Pour générer la documentation Swagger -->
-		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>2.2.0</version>
-		</dependency>
-
-		<!-- ==================== UTILITAIRES (Optionnel) ==================== -->
-
-		<!-- Apache Commons Lang - Utilitaires pour les Strings, Arrays, etc. -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.14.0</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>
